@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../../assets/website/orange-pattern.jpg";
 
-const BannerImg = {
-  backgroundImage: `url(${Banner})`,
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-  height: "100%",
-  width: "100%",
-};
-
 const Subscribe = () => {
+  const [email, setEmail] = useState("");
+
+  const BannerImg = {
+    backgroundImage: `url(${Banner})`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "100%",
+    width: "100%",
+  };
+
   return (
     <div
       data-aos="zoom-in"
-      className="mb-20 bg-gray-100 dark:bg-gray-800 text-white "
+      className="mb-20 bg-gray-100 dark:bg-gray-800 text-white"
       style={BannerImg}
     >
       <div className="container backdrop-blur-sm py-10">
@@ -26,7 +28,10 @@ const Subscribe = () => {
             data-aos="fade-up"
             type="text"
             placeholder="Enter your email"
-            className="w-full p-3"
+            className="w-full p-3 text-black" 
+            aria-label="Email input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>

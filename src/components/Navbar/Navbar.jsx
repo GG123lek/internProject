@@ -3,6 +3,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
+import CheckoutButton from "../CheckOutButton";
 
 const Menu = [
   {
@@ -87,10 +88,12 @@ const Navbar = ({ handleOrderPopup }) => {
 
            
             <div>
-              <DarkMode />
+              {/* <DarkMode /> */}
+              <CheckoutButton/>
             </div>
           </div>
         </div>
+       
       </div>
      
       <div data-aos="zoom-in" className="flex justify-center">
