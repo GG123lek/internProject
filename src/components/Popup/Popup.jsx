@@ -1,53 +1,73 @@
-import React from "react";
-import { IoCloseOutline } from "react-icons/io5";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
-const Popup = ({ orderPopup, setOrderPopup }) => {
+const Popup = ({ orderPopup, setOrderPopup, selectedProduct }) => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  const handleClose = () => {
+    setOrderPopup(false);
+  };
+
   return (
-    <>
-      {orderPopup && (
-        <div className="popup">
-          <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm">
-            <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[300px]">
-             
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1>Order Now</h1>
-                </div>
-                <div>
-                  <IoCloseOutline
-                    className="text-2xl cursor-pointer "
-                    onClick={() => setOrderPopup(false)}
-                  />
-                </div>
-              </div>
-             
-              <div className="mt-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className=" w-full rounded-full border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1 mb-4"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className=" w-full rounded-full border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1 mb-4"
-                />
-                <input
-                  type="text"
-                  placeholder="Address"
-                  className=" w-full rounded-full border border-gray-300 dark:border-gray-500 dark:bg-gray-800 px-2 py-1 mb-4"
-                />
-                <div className="flex justify-center">
-                  <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-1 px-4 rounded-full ">
-                    Order Now
-                  </button>
-                </div>
-              </div>
-            </div>
+    orderPopup && (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+        onClick={handleClose}
+      >
+        <div
+          className="bg-white p-6 rounded-lg w-80 md:w-96"
+          onClick={(e) => e.stopPropagation()} // Prevent closing on clicking the popup content
+        >
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold">Order Details</h2>
+            <FaTimes
+              onClick={handleClose}
+              className="text-2xl cursor-pointer"
+            />
           </div>
+          {selectedProduct && (
+            <>
+              <img
+                src={selectedProduct.img}
+                alt={selectedProduct.title}
+                className="w-full h-60 object-cover rounded-lg my-4"
+              />
+              <h3 className="text-lg font-semibold">{selectedProduct.title}</h3>
+              <p className="text-sm text-gray-600">{selectedProduct.description}</p>
+              <div className="mt-4 flex items-center gap-2">
+                <label htmlFor="quantity">Quantity: </label>
+                <input
+                  id="quantity"
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                  className="w-20 p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mt-6 flex justify-between">
+                <button
+                  onClick={handleClose}
+                  className="py-2 px-4 bg-red-500 text-white rounded-md"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleClose} // You can add payment logic here
+                  className="py-2 px-4 bg-green-500 text-white rounded-md"
+                >
+                  Proceed to Checkout
+                </button>
+              </div>
+            </>
+          )}
         </div>
-      )}
-    </>
+      </div>
+    )
   );
 };
 
