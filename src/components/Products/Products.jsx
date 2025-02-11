@@ -4,7 +4,10 @@ import Img2 from "../../assets/cotton image.avif";
 import Img3 from "../../assets/fashion image.avif";
 import Img4 from "../../assets/grey.jpg";
 import Img5 from "../../assets/red.jpg";
-import Img6 from "../../assets/button stripe.jpg"
+import Img6 from "../../assets/button stripe.jpg";
+import Img7 from "../../assets/kids wear1.webp";
+import Img8 from "../../assets/kids wear2.webp";
+import Img9 from "../../assets/kids wear3.png"
 
 import { FaStar } from "react-icons/fa";
 
@@ -15,6 +18,9 @@ const ProductsData = [
   { id: 4, img: Img4, title: "Grey Wear", description: "Beautiful Great shirt for men" },
   { id: 5, img: Img5, title: "a fine red wear", description: "A nice well designed shirt for men" },
   { id: 6, img: Img6, title: "button stripe wear", description: "Cute lovely shirt for men" },
+  { id: 7, img: Img7, title: "cute kids wear", description: "Cute lovely shirt for kids" },
+  { id: 8, img: Img8, title: "well designed kid wear", description: "a simple wears for kids" },
+  { id: 9, img: Img9, title: "a casual kid wear", description: "lovely casual wear for kids" },
 ];
 
 const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
