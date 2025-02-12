@@ -64,22 +64,8 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart, onlyTopRated = false,
   return (
     <div className="container">
       <div className="text-left gap-4 mb-24">
-        <p data-aos="fade-up" className="text-sm text-primary">
-          {onlyTopRated ? "Top Rated Products for You" : 
-           onlyKidsWear ? "Best Kids Wear" : 
-           onlyMensWear ? "Best Men's Wear" : 
-           onlyElectronics ? "Best Electronics" :
-           onlyTrending ? "Trending Products" :
-           onlyBestSelling ? "Best Selling Products" : "Best Products"}
-        </p>
-        <h1 data-aos="fade-up" className="text-3xl font-bold">
-          {onlyTopRated ? "Top Rated Products" : 
-           onlyKidsWear ? "Kids Wear" : 
-           onlyMensWear ? "Men's Wear" : 
-           onlyElectronics ? "Electronics Collection" : 
-           onlyTrending ? "Trending Products" :
-           onlyBestSelling ? "Best Selling" : "Best Products"}
-        </h1>
+        <p data-aos="fade-up" className="text-sm text-primary">{onlyTopRated ? "Top Rated Products for You" : onlyKidsWear ? "Best Kids Wear" : onlyMensWear ? "Best Men's Wear" : onlyElectronics ? "Best Electronics" : onlyTrending ? "Trending Products" : onlyBestSelling ? "Best Selling Products" : "Best Products"}</p>
+        <h1 data-aos="fade-up" className="text-3xl font-bold">{onlyTopRated ? "Top Rated Products" : onlyKidsWear ? "Kids Wear" : onlyMensWear ? "Men's Wear" : onlyElectronics ? "Electronics Collection" : onlyTrending ? "Trending Products" : onlyBestSelling ? "Best Selling" : "Best Products"}</h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-28 place-items-center">
         {filteredProducts.map((data) => (
@@ -87,9 +73,7 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart, onlyTopRated = false,
             <img src={data.img} alt={data.title} className="max-w-[140px] mx-auto -translate-y-20" />
             <h1 className="text-xl font-bold">{data.title}</h1>
             <p className="text-gray-500 text-sm">{data.description}</p>
-            <button className="bg-red-600 text-white py-1 px-4 rounded-full mt-4" onClick={() => handleOrderPopup(data)}>
-              Order Now
-            </button>
+            <button className="bg-red-600 text-white py-1 px-4 rounded-full mt-4" onClick={() => handleOrderPopup(data)}>Order Now</button>
           </div>
         ))}
       </div>
