@@ -12,11 +12,13 @@ import Banner from "./components/Banner/Banner";
 import Subscribe from "./components/Subscribe/Subscribe";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Footer from "./components/Footer/Footer";
+import BestSellingPage from "./components/BestSellingPage"; 
 
 import TopRatedPage from "./components/TopRatedPage";
 import KidsWearPage from "./components/KidsWearPage";
 import MensWearPage from "./components/MensWearPage";
 import ElectronicsPage from "./components/ElectronicsPage";
+import TrendingProductsPage from "./components/TrendingProductPage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -88,6 +90,9 @@ const App = () => {
               <Route path="/kids-wear" element={<KidsWearPage searchTerm={searchTerm} />} />
               <Route path="/mens-wear" element={<MensWearPage searchTerm={searchTerm} />} />
               <Route path="/electronics" element={<ElectronicsPage searchTerm={searchTerm} />} />
+              <Route path="/best-selling" element={<BestSellingPage handleOrderPopup={handleOrderPopup} searchTerm={searchTerm} cart={cart} />} />
+              <Route path="/trending-products" element={<TrendingProductsPage handleOrderPopup={handleOrderPopup} searchTerm={searchTerm} cart={cart} />} />
+
             </Routes>
 
             <Banner />
