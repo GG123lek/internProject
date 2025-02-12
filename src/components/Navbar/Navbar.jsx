@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
@@ -20,8 +20,10 @@ const DropdownLinks = [
   { id: 3, name: "Top Rated", link: "/top-rated" },
 ];
 
-const Navbar = ({ handleOrderPopup, onSearch }) => {
+const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [cartOpen, setCartOpen] = useState(false);
+  const cartRef = useRef(null);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -33,6 +35,24 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
       onSearch(searchTerm);
     }
   };
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setCartOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
@@ -56,13 +76,14 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
             </div>
             <button
-              onClick={() => handleOrderPopup()}
-              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
+              onClick={toggleCart}
+              className="relative bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
             >
-              <span className="group-hover:block hidden transition-all duration-200">
-                Order
-              </span>
+              <span className="group-hover:block hidden transition-all duration-200">Cart</span>
               <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+                ${totalAmount.toFixed(2)}
+              </span>
             </button>
             <div>
               <CheckoutButton />
@@ -98,6 +119,25 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
           </li>
         </ul>
       </div>
+      {cartOpen && (
+        <div ref={cartRef} className="absolute right-5 top-14 bg-white shadow-lg p-4 rounded-md w-64 z-50">
+          <h2 className="text-lg font-bold">Shopping Cart</h2>
+          {cart.length > 0 ? (
+            <ul>
+              {cart.map((item) => (
+                <li key={item.id} className="border-b py-2">
+                  <div className="flex justify-between items-center">
+                    <span>{item.title} ({item.quantity})</span>
+                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-gray-500">Your cart is empty</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
