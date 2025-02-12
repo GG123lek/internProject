@@ -5,31 +5,31 @@ const TestimonialData = [
   {
     id: 1,
     name: "Victor",
-    text: "A lovely Product for men",
+    text: "A lovely product for men.",
     img: "https://picsum.photos/101/101",
   },
   {
     id: 2,
     name: "Olamilekan",
-    text: "get every products u need here",
+    text: "Get every product you need here!",
     img: "https://picsum.photos/102/102",
   },
   {
     id: 3,
-    name: "shedrack",
-    text: "we bring new and just produce new product",
+    name: "Shedrack",
+    text: "We bring new and freshly produced products.",
     img: "https://picsum.photos/104/104",
   },
   {
-    id: 5,
-    name: "ezra",
-    text: "we slimplify things for you to be able to pick whatever u want",
+    id: 4, // ✅ Added missing ID to maintain correct structure
+    name: "Ezra",
+    text: "We simplify things for you to easily pick what you want.",
     img: "https://picsum.photos/103/103",
   },
 ];
 
 const Testimonials = () => {
-  var settings = {
+  const settings = {
     dots: true,
     arrows: false,
     infinite: true,
@@ -70,7 +70,7 @@ const Testimonials = () => {
   return (
     <div className="py-10 mb-10">
       <div className="container">
-        {/* header section */}
+        {/* Header Section */}
         <div className="text-center mb-10 max-w-[600px] mx-auto">
           <p data-aos="fade-up" className="text-sm text-primary">
             What our customers are saying
@@ -78,22 +78,18 @@ const Testimonials = () => {
           <h1 data-aos="fade-up" className="text-3xl font-bold">
             Testimonials
           </h1>
-         
         </div>
 
-        
+        {/* Testimonials Slider */}
         <div data-aos="zoom-in">
           <Slider {...settings}>
             {TestimonialData.map((data) => (
-              <div className="my-6">
-                <div
-                  key={data.id}
-                  className="flex flex-col gap-4 shadow-lg py-8 px-6 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative"
-                >
+              <div key={data.id} className="my-6">
+                <div className="flex flex-col gap-4 shadow-lg py-8 px-6 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative">
                   <div className="mb-4">
                     <img
                       src={data.img}
-                      alt=""
+                      alt={data.name}
                       className="rounded-full w-20 h-20"
                     />
                   </div>

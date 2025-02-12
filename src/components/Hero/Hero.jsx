@@ -9,22 +9,19 @@ const ImageList = [
     id: 1,
     img: Image1,
     title: "Upto 50% off on all Men's Wear",
-    description:
-      "",
+    description: "",
   },
   {
     id: 2,
     img: Image2,
     title: "30% off on all Women's Wear",
-    description:
-      "",
+    description: "",
   },
   {
     id: 3,
     img: Image3,
     title: "70% off on all Products Sale",
-    description:
-      "",
+    description: "",
   },
 ];
 
@@ -43,16 +40,16 @@ const Hero = ({ handleOrderPopup }) => {
   };
 
   return (
-    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-purple-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
-     
-      <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
-     
+    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-purple-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200">
+      {/* Background Design */}
+      <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-[8]"></div>
+
       <div className="container pb-8 sm:pb-0">
         <Slider {...settings}>
           {ImageList.map((data) => (
-            <div>
+            <div key={data.id}>
               <div className="grid grid-cols-1 sm:grid-cols-2">
-               
+                {/* Text Content */}
                 <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
                   <h1
                     data-aos="zoom-out"
@@ -84,6 +81,7 @@ const Hero = ({ handleOrderPopup }) => {
                   </div>
                 </div>
                 
+                {/* Image */}
                 <div className="order-1 sm:order-2">
                   <div
                     data-aos="zoom-in"

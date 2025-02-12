@@ -7,23 +7,40 @@ import Img5 from "../../assets/red.jpg";
 import Img6 from "../../assets/button stripe.jpg";
 import Img7 from "../../assets/kids wear1.webp";
 import Img8 from "../../assets/kids wear2.webp";
-import Img9 from "../../assets/kids wear3.png"
+import Img9 from "../../assets/kids wear3.png";
+import Img10 from "../../assets/elect watch.jpg";
+import Img11 from "../../assets/elect headphone.webp";
+import Img12 from "../../assets/elect phone.png";
+import Img13 from "../../assets/elect charger.jpg";
+import Img14 from "../../assets/elect speaker.webp";
+import Img15 from "../../assets/elect powerbank.jpeg";
+import Img16 from "../../assets/laptop charger.jpeg"
+import Img17 from "../../assets/elect airpod.jpeg";
+
 
 import { FaStar } from "react-icons/fa";
 
 const ProductsData = [
-  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men" },
-  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well designed shirt for men" },
-  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men" },
-  { id: 4, img: Img4, title: "Grey Wear", description: "Beautiful Great shirt for men" },
-  { id: 5, img: Img5, title: "a fine red wear", description: "A nice well designed shirt for men" },
-  { id: 6, img: Img6, title: "button stripe wear", description: "Cute lovely shirt for men" },
-  { id: 7, img: Img7, title: "cute kids wear", description: "Cute lovely shirt for kids" },
-  { id: 8, img: Img8, title: "well designed kid wear", description: "a simple wears for kids" },
-  { id: 9, img: Img9, title: "a casual kid wear", description: "lovely casual wear for kids" },
+  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men", topRated: true, mensWear: true },
+  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well-designed shirt for men", topRated: false, mensWear: true },
+  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men", topRated: true, mensWear: false },
+  { id: 4, img: Img4, title: "Grey Wear", description: "Beautiful Great shirt for men", topRated: false, mensWear: true },
+  { id: 5, img: Img5, title: "A Fine Red Wear", description: "A nice well-designed shirt for men", topRated: true, mensWear: true },
+  { id: 6, img: Img6, title: "Button Stripe Wear", description: "Cute lovely shirt for men", topRated: false, mensWear: true },
+  { id: 7, img: Img7, title: "Cute Kids Wear", description: "Cute lovely shirt for kids", topRated: false, kidsWear: true },
+  { id: 8, img: Img8, title: "Well Designed Kid Wear", description: "A simple wear for kids", topRated: false, kidsWear: true },
+  { id: 9, img: Img9, title: "A Casual Kid Wear", description: "Lovely casual wear for kids", topRated: true, kidsWear: true },
+  { id: 10, img: Img10, title: "WristWatch", description: "Latest watches with advanced features", topRated: true, electronics: true },
+  { id: 11, img: Img11, title: "Headphone", description: "Powerful headphone for work and gaming", topRated: true, electronics: true },
+  { id: 12, img: Img12, title: "Wireless Phones", description: "Noise-canceling high-quality sound", topRated: false, electronics: true },
+  { id: 13, img: Img13, title: "Charger", description: "Fast and affordable charger", topRated: false, electronics: true },
+  { id: 14, img: Img14, title: "Speaker", description: "Best soundbeat u can get", topRated: false, electronics: true },
+  { id: 15, img: Img15, title: "PowerBank", description: "Get the best charging experience ever", topRated: false, electronics: true },
+  { id: 16, img: Img16, title: "LaptopCharger", description: "Very fast laptop charger", topRated: false, electronics: true },
+  { id: 17, img: Img17, title: "Airpod", description: "Small and very lovely listening devices", topRated: false, electronics: true },
 ];
 
-const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
+const TopProducts = ({ handleOrderPopup, searchTerm, cart, onlyTopRated = false, onlyKidsWear = false, onlyMensWear = false, onlyElectronics = false }) => {
   const productRefs = useRef({});
 
   useEffect(() => {
@@ -34,19 +51,30 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
     });
   }, []);
 
-  // Filter products based on search term
-  const filteredProducts = ProductsData.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter products based on search term and selected category
+  const filteredProducts = ProductsData.filter((product) => {
+    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
+    if (onlyTopRated) return product.topRated && matchesSearch;
+    if (onlyKidsWear) return product.kidsWear && matchesSearch;
+    if (onlyMensWear) return product.mensWear && matchesSearch;
+    if (onlyElectronics) return product.electronics && matchesSearch; // <-- Added Electronics Filtering
+    return matchesSearch;
+  });
 
   return (
     <div className="container">
       <div className="text-left gap-4 mb-24">
         <p data-aos="fade-up" className="text-sm text-primary">
-          Top Rated Products for you
+          {onlyTopRated ? "Top Rated Products for You" : 
+           onlyKidsWear ? "Best Kids Wear" : 
+           onlyMensWear ? "Best Men's Wear" : 
+           onlyElectronics ? "Best Electronics" : "Best Products"}
         </p>
         <h1 data-aos="fade-up" className="text-3xl font-bold">
-          Best Products for Men
+          {onlyTopRated ? "Top Rated Products" : 
+           onlyKidsWear ? "Kids Wear" : 
+           onlyMensWear ? "Men's Wear" : 
+           onlyElectronics ? "Electronics Collection" : "Best Products"}
         </h1>
       </div>
 

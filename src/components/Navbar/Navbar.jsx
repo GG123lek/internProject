@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
@@ -6,17 +7,17 @@ import DarkMode from "./DarkMode";
 import CheckoutButton from "../CheckOutButton";
 
 const Menu = [
-  { id: 1, name: "Home", link: "/#" },
-  { id: 2, name: "Top Rated", link: "/#services" },
-  { id: 3, name: "Kids Wear", link: "/#" },
-  { id: 4, name: "Mens Wear", link: "/#" },
-  { id: 5, name: "Electronics", link: "/#" },
+  { id: 1, name: "Home", link: "/" },
+  { id: 2, name: "Top Rated", link: "/top-rated" },
+  { id: 3, name: "Kids Wear", link: "/kids-wear" },
+  { id: 4, name: "Mens Wear", link: "/mens-wear" },
+  { id: 5, name: "Electronics", link: "/electronics" },
 ];
 
 const DropdownLinks = [
-  { id: 1, name: "Trending Products", link: "/#" },
-  { id: 2, name: "Best Selling", link: "/#" },
-  { id: 3, name: "Top Rated", link: "/#" },
+  { id: 1, name: "Trending Products", link: "/trending-products" },
+  { id: 2, name: "Best Selling", link: "/best-selling" },
+  { id: 3, name: "Top Rated", link: "/top-rated" },
 ];
 
 const Navbar = ({ handleOrderPopup, onSearch }) => {
@@ -28,7 +29,7 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
 
   const handleSearchSubmit = (event) => {
     if (event.key === "Enter") {
-      event.preventDefault(); 
+      event.preventDefault();
       onSearch(searchTerm);
     }
   };
@@ -38,9 +39,9 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
       <div className="bg-primary/40 py-2">
         <div className="container flex justify-between items-center">
           <div>
-            <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2">
+            <Link to="/" className="font-bold text-2xl sm:text-3xl flex gap-2">
               Suleiman-Shop
-            </a>
+            </Link>
           </div>
           <div className="flex justify-between items-center gap-4">
             <div className="relative group hidden sm:block">
@@ -49,7 +50,7 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
                 placeholder="Search"
                 value={searchTerm}
                 onChange={handleSearchChange}
-                onKeyDown={handleSearchSubmit} zs
+                onKeyDown={handleSearchSubmit}
                 className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800"
               />
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
@@ -73,25 +74,23 @@ const Navbar = ({ handleOrderPopup, onSearch }) => {
         <ul className="sm:flex hidden items-center gap-4">
           {Menu.map((data) => (
             <li key={data.id}>
-              <a href={data.link} className="inline-block px-4 hover:text-primary duration-200">
+              <Link to={data.link} className="inline-block px-4 hover:text-primary duration-200">
                 {data.name}
-              </a>
+              </Link>
             </li>
           ))}
           <li className="group relative cursor-pointer">
-            <a href="#" className="flex items-center gap-[2px] py-2">
+            <span className="flex items-center gap-[2px] py-2">
               Trending Products
-              <span>
-                <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
-              </span>
-            </a>
+              <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
+            </span>
             <div className="absolute z-[9999] hidden group-hover:block w-[200px] rounded-md bg-white p-2 text-black shadow-md">
               <ul>
                 {DropdownLinks.map((data) => (
                   <li key={data.id}>
-                    <a href={data.link} className="inline-block w-full rounded-md p-2 hover:bg-primary/20">
+                    <Link to={data.link} className="inline-block w-full rounded-md p-2 hover:bg-primary/20">
                       {data.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
