@@ -52,7 +52,14 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
     };
   }, []);
 
-  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+ 
+  const totalAmount = cart.reduce((sum, item) => {
+    const price = Number(item.price) || 0;
+    const quantity = Number(item.quantity) || 0;
+    return sum + price * quantity;
+  }, 0);
+  
+
 
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
