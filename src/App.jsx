@@ -102,38 +102,40 @@ const App = () => {
 
             {orderPopup && selectedProduct && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h2 className="text-xl font-bold mb-2">{selectedProduct.title}</h2>
-                  <p className="mb-4">{selectedProduct.description}</p>
-                  <div className="flex items-center justify-center gap-4 mb-4">
-                    <button 
-                      className="bg-gray-300 px-3 py-1 rounded" 
-                      onClick={() => setOrderQuantity((prev) => Math.max(1, prev - 1))}
-                    >
-                      -
-                    </button>
-                    <span className="text-lg font-bold">{orderQuantity}</span>
-                    <button 
-                      className="bg-gray-300 px-3 py-1 rounded" 
-                      onClick={() => setOrderQuantity((prev) => prev + 1)}
-                    >
-                      +
-                    </button>
-                  </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                <h2 className="text-xl font-bold mb-2 text-purple-700">{selectedProduct.title}</h2> 
+                <p className="mb-4 text-purple-600">{selectedProduct.description}</p> 
+          
+                <div className="flex items-center justify-center gap-4 mb-4">
                   <button 
-                    className="bg-green-500 text-white px-4 py-2 rounded mb-2"
-                    onClick={handleProceedToCheckout}
+                    className="bg-gray-300 px-3 py-1 rounded" 
+                    onClick={() => setOrderQuantity((prev) => Math.max(1, prev - 1))}
                   >
-                    Proceed to Checkout
+                    -
                   </button>
+                  <span className="text-lg font-bold">{orderQuantity}</span>
                   <button 
-                    className="bg-red-500 text-white px-4 py-2 rounded" 
-                    onClick={() => setOrderPopup(false)}
+                    className="bg-gray-300 px-3 py-1 rounded" 
+                    onClick={() => setOrderQuantity((prev) => prev + 1)}
                   >
-                    Cancel
+                    +
                   </button>
                 </div>
+          
+                <button 
+                  className="bg-green-500 text-white px-4 py-2 rounded mb-2"
+                  onClick={handleProceedToCheckout}
+                >
+                  Proceed to Checkout
+                </button>
+                <button 
+                  className="bg-red-500 text-white px-4 py-2 rounded" 
+                  onClick={() => setOrderPopup(false)}
+                >
+                  Cancel
+                </button>
               </div>
+            </div>
             )}
           </>
         )}
