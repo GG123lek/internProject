@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
-import { FaCartShopping, FaBars, FaTimes } from "react-icons/fa6";
+// import { FaCartShopping, FaBars, FaTimes } from "react-icons";
+import { FaCartShopping, FaBars } from "react-icons/fa6";
+import { FaTimes } from "react-icons/fa";  // ✅ Correct import
 import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import CheckoutButton from "../CheckOutButton";
