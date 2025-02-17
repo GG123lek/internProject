@@ -5,7 +5,7 @@ import { IoMdSearch } from "react-icons/io";
 import { FaCartShopping, FaBars } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";  // ✅ Correct import
 import { FaCaretDown } from "react-icons/fa";
-import DarkMode from "./DarkMode";
+// import DarkMode from "./DarkMode";
 import CheckoutButton from "../CheckOutButton";
 
 const Menu = [
@@ -144,7 +144,8 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
       
       {cartOpen && (
         <div ref={cartRef} className="absolute right-5 top-14 bg-white shadow-lg p-4 rounded-md w-64 z-50">
-          <h2 className="text-lg font-bold">Shopping Cart</h2>
+         <h2 className="text-lg font-bold text-blue-700">Shopping Cart</h2>
+
           {cart.length > 0 ? (
             <ul>
               {cart.map((item) => (
