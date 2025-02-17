@@ -27,7 +27,7 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
     });
   }, []);
 
-  // Filter products based on search term
+ 
   const filteredProducts = ProductsData.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );

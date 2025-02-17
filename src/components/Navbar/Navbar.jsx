@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
-// import { FaCartShopping, FaBars, FaTimes } from "react-icons/fa6";
- import { FaCaretDown } from "react-icons/fa";
-import { FaCartShopping, FaBars } from "react-icons/fa6";
-import { FaTimes } from "react-icons/fa";  // ✅ Correct import
-
+import { FaCartShopping, FaBars, FaTimes } from "react-icons/fa6";
+import { FaCaretDown } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import CheckoutButton from "../CheckOutButton";
 
@@ -64,7 +61,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
 
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
-      {/* TOP NAVBAR */}
+      
       <div className="bg-primary/40 py-2">
         <div className="container flex justify-between items-center">
           <div>
@@ -73,7 +70,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            {/* SEARCH BAR */}
+          
             <div className="relative group hidden sm:block">
               <input
                 type="text"
@@ -86,7 +83,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
             </div>
 
-            {/* CART BUTTON */}
+           
             <button
               onClick={toggleCart}
               className="relative bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
@@ -98,12 +95,12 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               </span>
             </button>
 
-            {/* CHECKOUT BUTTON */}
+           
             <div>
               <CheckoutButton />
             </div>
 
-            {/* HAMBURGER MENU BUTTON */}
+          
             <button className="sm:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -111,7 +108,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
         </div>
       </div>
 
-      {/* NAV LINKS - TOGGLED ONLY ON MOBILE */}
+     
       <div className={`sm:flex ${menuOpen ? "block" : "hidden"} justify-center`}>
         <ul className="sm:flex flex-col sm:flex-row items-center gap-4">
           {Menu.map((data) => (
@@ -121,7 +118,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               </Link>
             </li>
           ))}
-          {/* DROPDOWN FOR TRENDING PRODUCTS */}
+         
           <li className="group relative cursor-pointer">
             <span className="flex items-center gap-[2px] py-2">
               Trending Products
@@ -142,7 +139,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
         </ul>
       </div>
 
-      {/* CART DROPDOWN */}
+      
       {cartOpen && (
         <div ref={cartRef} className="absolute right-5 top-14 bg-white shadow-lg p-4 rounded-md w-64 z-50">
           <h2 className="text-lg font-bold">Shopping Cart</h2>
