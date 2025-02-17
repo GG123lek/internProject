@@ -150,7 +150,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
             <ul>
               {cart.map((item) => (
                 <li key={item.id} className="border-b py-2">
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center text-yellow-300">
                     <span>{item.title} ({item.quantity})</span>
                     <span>${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
