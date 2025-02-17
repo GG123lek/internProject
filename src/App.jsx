@@ -108,14 +108,15 @@ const App = () => {
           
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <button 
-                    className="bg-gray-300 px-3 py-1 rounded" 
+                    className="bg-red-300 px-3 py-1 rounded" 
                     onClick={() => setOrderQuantity((prev) => Math.max(1, prev - 1))}
                   >
                     -
                   </button>
-                  <span className="text-lg font-bold">{orderQuantity}</span>
+                  <span className="text-lg font-bold text-orange-500">{orderQuantity}</span>
+
                   <button 
-                    className="bg-gray-300 px-3 py-1 rounded" 
+                    className="bg-red-300 px-3 py-1 rounded" 
                     onClick={() => setOrderQuantity((prev) => prev + 1)}
                   >
                     +
