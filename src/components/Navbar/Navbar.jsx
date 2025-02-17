@@ -158,7 +158,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               ))}
             </ul>
           ) : (
-            <p className="text-sm text-gray-500">Your cart is empty</p>
+            <p className="text-sm text-green-500">Your cart is empty</p>
           )}
         </div>
       )}
