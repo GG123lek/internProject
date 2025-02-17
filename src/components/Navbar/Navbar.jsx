@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
-import { FaCartShopping } from "react-icons/fa6";
-import { FaCaretDown } from "react-icons/fa";
+// import { FaCartShopping, FaBars, FaTimes } from "react-icons/fa6";
+ import { FaCaretDown } from "react-icons/fa";
+import { FaCartShopping, FaBars } from "react-icons/fa6";
+import { FaTimes } from "react-icons/fa";  // ✅ Correct import
+
 import DarkMode from "./DarkMode";
 import CheckoutButton from "../CheckOutButton";
 
@@ -23,6 +26,7 @@ const DropdownLinks = [
 const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [cartOpen, setCartOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const cartRef = useRef(null);
 
   const handleSearchChange = (event) => {
@@ -52,17 +56,15 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
     };
   }, []);
 
- 
   const totalAmount = cart.reduce((sum, item) => {
     const price = Number(item.price) || 0;
     const quantity = Number(item.quantity) || 0;
     return sum + price * quantity;
   }, 0);
-  
-
 
   return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
+      {/* TOP NAVBAR */}
       <div className="bg-primary/40 py-2">
         <div className="container flex justify-between items-center">
           <div>
@@ -70,7 +72,8 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               Suleiman-Shop
             </Link>
           </div>
-          <div className="flex justify-between items-center gap-4">
+          <div className="flex items-center gap-4">
+            {/* SEARCH BAR */}
             <div className="relative group hidden sm:block">
               <input
                 type="text"
@@ -82,6 +85,8 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               />
               <IoMdSearch className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
             </div>
+
+            {/* CART BUTTON */}
             <button
               onClick={toggleCart}
               className="relative bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
@@ -92,14 +97,23 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
                 ${totalAmount.toFixed(2)}
               </span>
             </button>
+
+            {/* CHECKOUT BUTTON */}
             <div>
               <CheckoutButton />
             </div>
+
+            {/* HAMBURGER MENU BUTTON */}
+            <button className="sm:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
           </div>
         </div>
       </div>
-      <div data-aos="zoom-in" className="flex justify-center">
-        <ul className="sm:flex hidden items-center gap-4">
+
+      {/* NAV LINKS - TOGGLED ONLY ON MOBILE */}
+      <div className={`sm:flex ${menuOpen ? "block" : "hidden"} justify-center`}>
+        <ul className="sm:flex flex-col sm:flex-row items-center gap-4">
           {Menu.map((data) => (
             <li key={data.id}>
               <Link to={data.link} className="inline-block px-4 hover:text-primary duration-200">
@@ -107,6 +121,7 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
               </Link>
             </li>
           ))}
+          {/* DROPDOWN FOR TRENDING PRODUCTS */}
           <li className="group relative cursor-pointer">
             <span className="flex items-center gap-[2px] py-2">
               Trending Products
@@ -126,6 +141,8 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
           </li>
         </ul>
       </div>
+
+      {/* CART DROPDOWN */}
       {cartOpen && (
         <div ref={cartRef} className="absolute right-5 top-14 bg-white shadow-lg p-4 rounded-md w-64 z-50">
           <h2 className="text-lg font-bold">Shopping Cart</h2>
