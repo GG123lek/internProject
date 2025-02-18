@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 const DarkMode = () => {
   useEffect(() => {
-    document.documentElement.classList.remove("dark"); // Ensure dark mode is removed
-    localStorage.setItem("theme", "light"); // Always store 'light' mode
+    document.documentElement.classList.remove("dark"); 
+    localStorage.setItem("theme", "light"); 
   }, []);
 
-  return null; // Remove the dark mode toggle buttons
+  return null; 
 };
 
 export default DarkMode;

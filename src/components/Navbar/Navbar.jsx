@@ -98,9 +98,9 @@ const Navbar = ({ handleOrderPopup, onSearch, cart }) => {
             </button>
 
            
-            <div>
+            {/* <div>
               <CheckoutButton />
-            </div>
+            </div> */}
 
           
             <button className="sm:hidden text-xl" onClick={() => setMenuOpen(!menuOpen)}>

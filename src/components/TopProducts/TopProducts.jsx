@@ -2,18 +2,18 @@ import React, { useRef, useEffect } from "react";
 import Img1 from "../../assets/cute shirt.webp";
 import Img2 from "../../assets/cotton image.avif";
 import Img3 from "../../assets/fashion image.avif";
-import Img4 from "../../assets/sweater1.jpg"
-import Img5 from "../../assets/sweater2.jpg"
-import Img6 from "../../assets/sweater3.png"
+import Img4 from "../../assets/sweater1.jpg";
+import Img5 from "../../assets/sweater2.jpg";
+import Img6 from "../../assets/sweater3.png";
 import { FaStar } from "react-icons/fa";
 
 const ProductsData = [
-  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men" },
-  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well designed shirt for men" },
-  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men" },
-  { id: 4, img: Img4, title: "Casual Sweater", description: "Beautiful Great Sweater for men" },
-  { id: 5, img: Img5, title: "Colored Sweater for men", description: "A nice well designed sweater for men" },
-  { id: 6, img: Img6, title: "Well designed Sweater", description: "Cute lovely sweater for men" },
+  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men", price: 25 },
+  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well designed shirt for men", price: 30 },
+  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men", price: 28 },
+  { id: 4, img: Img4, title: "Casual Sweater", description: "Beautiful Great Sweater for men", price: 35 },
+  { id: 5, img: Img5, title: "Colored Sweater for men", description: "A nice well designed sweater for men", price: 40 },
+  { id: 6, img: Img6, title: "Well designed Sweater", description: "Cute lovely sweater for men", price: 38 },
 ];
 
 const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
@@ -27,7 +27,6 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
     });
   }, []);
 
- 
   const filteredProducts = ProductsData.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -76,6 +75,7 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
                   <p className="text-gray-500 group-hover:text-white duration-300 text-sm line-clamp-2">
                     {data.description}
                   </p>
+                  <p className="text-lg font-bold text-red-600 mt-2">${data.price}</p>
                   <button
                     className="bg-red-600 hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-red-600"
                     onClick={() => handleOrderPopup(data)}

@@ -72,7 +72,7 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart, onlyTopRated = false,
             <img src={data.img} alt={data.title} className="max-w-[140px] mx-auto -translate-y-20" />
             <h1 className="text-xl font-bold">{data.title}</h1>
             <p className="text-gray-500 text-sm">{data.description}</p>
-            <p className="text-blue-300 font-bold mt-2">${data.price}</p>
+            <p className="text-blue-30 font-bold mt-2">${data.price}</p>
             <button className="bg-red-600 text-white py-1 px-4 rounded-full mt-4" onClick={() => handleOrderPopup(data)}>Order Now</button>
           </div>
         ))}
