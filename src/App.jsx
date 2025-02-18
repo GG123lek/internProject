@@ -157,7 +157,7 @@ const App = () => {
                     placeholder="Enter your email for payment"
                     value={userEmail} // Bind the email input to the state
                     onChange={(e) => setUserEmail(e.target.value)} // Update email on input change
-                    className="border p-2 mb-4 w-full text-center"
+                    className="border p-2 mb-4 w-full text-center text-brown-300"
                   />
 
                   <button
