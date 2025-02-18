@@ -17,7 +17,7 @@ import KidsWearPage from "./components/KidsWearPage";
 import MensWearPage from "./components/MensWearPage";
 import ElectronicsPage from "./components/ElectronicsPage";
 import TrendingProductsPage from "./components/TrendingProductPage";
-import PaystackPayment from "./components/PaystackPayment"; // Keep the PaystackPayment import
+import PaystackPayment from "./components/PaystackPayment";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -27,8 +27,7 @@ const App = () => {
   const [cartPopup, setCartPopup] = useState(false);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [email, setEmail] = useState(""); // To capture the email input
-  const [userEmail, setUserEmail] = useState(""); // Email to store per user order
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
@@ -60,7 +59,7 @@ const App = () => {
   };
 
   const handlePayment = () => {
-    if (!userEmail) {
+    if (!email) {
       alert("Please enter your email to proceed.");
       return;
     }
@@ -74,22 +73,19 @@ const App = () => {
 
     const handler = window.PaystackPop.setup({
       key: "pk_test_a9d73f58d8bd3e53d1ecba33162740b568fef46d", // Replace with your actual Paystack Public Key
-      email: userEmail, // Using the email entered by the user for payment
+      email: email,
       amount: totalAmount * 100, // Paystack processes amounts in kobo (1 Naira = 100 Kobo)
-      currency: "NGN", // The currency you're using
+      currency: "NGN",
       callback: function (response) {
-        // Handle successful payment
         alert(`Payment successful! Transaction ID: ${response.reference}`);
         setCart([]); // Clear cart after successful payment
         setCartPopup(false); // Close cart popup
       },
       onClose: function () {
-        // Handle when the payment modal is closed
         alert("Transaction was not completed. You can try again.");
       },
     });
 
-    // Open the Paystack modal
     handler.openIframe();
   };
 
@@ -154,20 +150,17 @@ const App = () => {
 
                   <input
                     type="email"
-                    placeholder="Enter your email for payment"
-                    value={userEmail} // Bind the email input to the state
-                    onChange={(e) => setUserEmail(e.target.value)} // Update email on input change
-                    className="border p-2 mb-4 w-full text-center text-brown-300"
+                    placeholder="Enter email for payment"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="border p-2 mb-4 w-full text-center"
                   />
 
                   <button
                     className="bg-green-500 text-white px-4 py-2 rounded mb-2"
-                    onClick={() => {
-                      handleProceedToCheckout();
-                      handlePayment();
-                    }}
+                    onClick={handleProceedToCheckout}
                   >
-                    Proceed to Payment
+                    Proceed to Checkout
                   </button>
                   <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => setOrderPopup(false)}>
                     Cancel
