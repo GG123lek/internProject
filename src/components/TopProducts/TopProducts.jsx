@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Img1 from "../../assets/cute shirt.webp";
 import Img2 from "../../assets/cotton image.avif";
 import Img3 from "../../assets/fashion image.avif";
@@ -8,16 +8,17 @@ import Img6 from "../../assets/sweater3.png";
 import { FaStar } from "react-icons/fa";
 
 const ProductsData = [
-  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men", price: 25 },
-  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well designed shirt for men", price: 30 },
-  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men", price: 28 },
-  { id: 4, img: Img4, title: "Casual Sweater", description: "Beautiful Great Sweater for men", price: 35 },
-  { id: 5, img: Img5, title: "Colored Sweater for men", description: "A nice well designed sweater for men", price: 40 },
-  { id: 6, img: Img6, title: "Well designed Sweater", description: "Cute lovely sweater for men", price: 38 },
+  { id: 1, img: Img1, title: "Casual Wear", description: "Beautiful Great shirt for men", price: 500 },
+  { id: 2, img: Img2, title: "Printed Shirt", description: "A nice well designed shirt for men", price: 600 },
+  { id: 3, img: Img3, title: "Women Shirt", description: "Cute lovely shirt for men", price: 550 },
+  { id: 4, img: Img4, title: "Casual Sweater", description: "Beautiful Great Sweater for men", price: 700 },
+  { id: 5, img: Img5, title: "Colored Sweater for men", description: "A nice well designed sweater for men", price: 800 },
+  { id: 6, img: Img6, title: "Well designed Sweater", description: "Cute lovely sweater for men", price: 400 },
 ];
 
 const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
   const productRefs = useRef({});
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     Object.keys(productRefs.current).forEach((key) => {
@@ -30,6 +31,26 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
   const filteredProducts = ProductsData.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Function to handle the order when the button is clicked
+  const handleOrder = (product) => {
+    // Prompt user for email if not already provided
+    if (!userEmail) {
+      const email = prompt("Please enter your email to proceed with payment:");
+      if (email) {
+        setUserEmail(email);
+        // Once email is entered, proceed with payment logic (you can replace this with your payment gateway logic)
+        alert(`Proceeding to payment for ${product.title} with email: ${email}`);
+        handleOrderPopup(product); // You can call your existing handleOrderPopup function here for additional actions (e.g., opening a modal or redirecting)
+      } else {
+        alert("You need to provide an email to proceed.");
+      }
+    } else {
+      // If email is already set, just proceed with the order
+      alert(`Proceeding to payment for ${product.title} with email: ${userEmail}`);
+      handleOrderPopup(product); // Trigger payment or other logic
+    }
+  };
 
   return (
     <div className="container">
@@ -75,10 +96,10 @@ const TopProducts = ({ handleOrderPopup, searchTerm, cart }) => {
                   <p className="text-gray-500 group-hover:text-white duration-300 text-sm line-clamp-2">
                     {data.description}
                   </p>
-                  <p className="text-lg font-bold text-red-600 mt-2">${data.price}</p>
+                  <p className="text-lg font-bold text-green-500 mt-2">₦{data.price}</p>
                   <button
                     className="bg-red-600 hover:scale-105 duration-300 text-white py-1 px-4 rounded-full mt-4 group-hover:bg-white group-hover:text-red-600"
-                    onClick={() => handleOrderPopup(data)}
+                    onClick={() => handleOrder(data)} // Updated to use the new handleOrder function
                   >
                     Order Now
                   </button>
