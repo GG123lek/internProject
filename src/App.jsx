@@ -18,6 +18,7 @@ import MensWearPage from "./components/MensWearPage";
 import ElectronicsPage from "./components/ElectronicsPage";
 import TrendingProductsPage from "./components/TrendingProductPage";
 import PaystackPayment from "./components/PaystackPayment";
+import QualityProductPage from "./components/QualityProductPage"
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -114,6 +115,7 @@ const App = () => {
               <Route path="/top-rated" element={<TopRatedPage searchTerm={searchTerm} />} />
               <Route path="/kids-wear" element={<KidsWearPage searchTerm={searchTerm} />} />
               <Route path="/mens-wear" element={<MensWearPage searchTerm={searchTerm} />} />
+              <Route path="/quality-product" element={<QualityProductPage />} />
               <Route path="/electronics" element={<ElectronicsPage searchTerm={searchTerm} />} />
               <Route path="/best-selling" element={<BestSellingPage handleOrderPopup={handleOrderPopup} searchTerm={searchTerm} cart={cart} />} />
               <Route path="/trending-products" element={<TrendingProductsPage handleOrderPopup={handleOrderPopup} searchTerm={searchTerm} cart={cart} />} />
